@@ -1,0 +1,247 @@
+---
+name: "montage_failure_prob"
+dataIns:
+- name: "input_files"
+  type: "collection"
+  source: "input_files"
+- name: "failure_prob"
+  type: "number"
+  source: "failure_prob"
+workflowBody:
+ - parallelFor:
+     name: "mProjects"
+     dataIns:
+     - name: "input"
+       type: "string"
+       source: "montage_failure_prob/input_files"
+       constraints:
+       - name: "distribution"
+         value: "BLOCK(1)"
+     - name: "failure_prob"
+       type: "number"
+       source: "montage_failure_prob/failure_prob"
+       constraints:
+       - name: "distribution"
+         value: "REPLICATE(*)"
+     loopCounter:
+       name: "counter"
+       type: "number"
+       from: "0"
+       to: "6"
+       step: "1"
+     loopBody:
+     - function:
+         name: "mProject"
+         type: "mProjectType"
+         dataIns:
+         - name: "input"
+           type: "string"
+           source: "mProjects/input"  
+         - name: "failure_prob"
+           type: "number"
+           source: "mProjects/failure_prob"  
+         dataOuts:
+         - name: "failure_prob"
+           type: "number"
+         properties:
+         - name: "resource"
+           value: "https://your-region-your-project.cloudfunctions.net/mProject-failure_prob"
+         constraints:
+         - name: "FT-AltPlan-0"
+           value: "1;https://yourproject.azurewebsites.net/api/mProject-failure_prob;"   
+         - name: "FT-AltPlan-1"
+           value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mProject-failure_prob;"   
+     dataOuts:
+     - name: "failure_prob"
+       type: "number"
+       source: "mProject/failure_prob"
+ - function:
+     name: "preparemDiffFit"
+     type: "preparemDiffFitType"
+     dataIns:
+     - name: "failure_prob"
+       type: "number"
+       source: "mProjects/failure_prob"
+     dataOuts: 
+     - name: "diff_indices"
+       type: "collection"
+     - name: "failure_prob"
+       type: "number"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/preparemDiffFit-failure_prob"
+ - parallelFor:
+     name: "mDiffFits"
+     dataIns:
+     - name: "index"
+       type: "number"
+       source: "preparemDiffFit/diff_indices"
+       constraints:
+       - name: "distribution"
+         value: "BLOCK(1)"
+     - name: "failure_prob"
+       type: "number"
+       source: "preparemDiffFit/failure_prob"
+       constraints:
+       - name: "distribution"
+         value: "REPLICATE(*)"
+     loopCounter:
+       name: "counter"
+       type: "number"
+       from: "0"
+       to: "9"
+       step: "1"
+     loopBody:
+     - function:
+         name: "mDiffFit"
+         type: "mDiffFitType"
+         dataIns:
+         - name: "index"
+           type: "number"
+           source: "mDiffFits/index"   
+         - name: "failure_prob"
+           type: "number"
+           source: "mDiffFits/failure_prob"               
+         properties:
+         - name: "resource"
+           value: "https://your-region-your-project.cloudfunctions.net/mDiffFit-failure_prob"
+         constraints:
+         - name: "FT-AltPlan-0"
+           value: "1;https://yourproject.azurewebsites.net/api/mDiffFit-failure_prob;"  
+         - name: "FT-AltPlan-1"
+           value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mDiffFit-failure_prob;"  
+         dataOuts:
+         - name: "failure_prob"
+           type: "number"
+     dataOuts: 
+     - name: "failure_prob"
+       type: "number"
+       source: "mDiffFits/failure_prob"
+ - function:
+     name: "mBgModel"
+     type: "mBgType"
+     dataIns:
+     - name: "failure_prob"
+       type: "number"
+       source: "mDiffFits/failure_prob"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mBgModel-failure_prob"
+     constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mBgModel-failure_prob;"  
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mBgModel-failure_prob;"  
+     dataOuts: 
+     - name: "failure_prob"
+       type: "number"
+ - function:
+     name: "preparemBackground"
+     type: "preparemBackgroundType"
+     dataIns:
+     - name: "failure_prob"
+       type: "number"
+       source: "mBgModel/failure_prob"
+     dataOuts: 
+     - name: "background_indices"
+       type: "collection" 
+     - name: "failure_prob"
+       type: "number"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/preparemBackground-failure_prob"
+ - parallelFor:
+     name: "mBackgrounds"
+     dataIns:
+     - name: "index"
+       type: "number"
+       source: "preparemBackground/background_indices"
+       constraints:
+       - name: "distribution"
+         value: "BLOCK(1)"
+     - name: "failure_prob"
+       type: "number"
+       source: "preparemBackground/failure_prob"
+       constraints:
+       - name: "distribution"
+         value: "REPLICATE(*)"
+     loopCounter:
+       name: "counter"
+       type: "number"
+       from: "0"
+       to: "6"
+       step: "1"
+     loopBody:
+     - function:
+         name: "mBackground"
+         type: "mBackgroundType"
+         dataIns:
+         - name: "index"
+           type: "number"
+           source: "mBackgrounds/index"  
+         - name: "failure_prob"
+           type: "number"
+           source: "mBackgrounds/failure_prob"                
+         properties:
+         - name: "resource"
+           value: "https://your-region-your-project.cloudfunctions.net/mBackground-failure_prob"
+         constraints:
+         - name: "FT-AltPlan-0"
+           value: "1;https://yourproject.azurewebsites.net/api/mBackground-failure_prob;"  
+         - name: "FT-AltPlan-1"
+           value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mBackground-failure_prob;"  
+     dataOuts:
+     - name: "failure_prob"
+       type: "number"
+       source: "mBackgrounds/failure_prob"
+ - function:
+     name: "mImgtbl"
+     type: "mImgtblType"
+     dataIns: 
+     - name: "failure_prob"
+       type: "number"
+       source: "mBackgrounds/failure_prob"
+     dataOuts:
+     - name: "failure_prob"
+       type: "number"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mImgtbl-failure_prob"
+     constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mImgtbl-failure_prob;"  
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mImgtbl-failure_prob;" 
+ - function:
+     name: "mAdd"
+     type: "mAddType"
+     dataIns: 
+     - name: "failure_prob"
+       type: "number"
+       source: "mImgtbl/failure_prob"
+     dataOuts:
+     - name: "failure_prob"
+       type: "number"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mAdd-failure_prob"
+     constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mAdd-failure_prob;"  
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mAdd-failure_prob;" 
+ - function:
+     name: "mViewer"
+     type: "mViewerType"
+     dataIns: 
+     - name: "failure_prob"
+       type: "number"
+       source: "mAdd/failure_prob"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mViewer-failure_prob"
+     constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mViewer-failure_prob;"  
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mViewer-failure_prob;"  

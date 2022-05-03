@@ -1,0 +1,162 @@
+---
+name: "montage"
+dataIns:
+- name: "input_files"
+  type: "collection"
+  source: "input_files"
+workflowBody:
+ - parallelFor:
+     name: "mProjects"
+     dataIns:
+     - name: "input"
+       type: "string"
+       source: "montage/input_files"
+       constraints:
+       - name: "distribution"
+         value: "BLOCK(1)"
+     loopCounter:
+       name: "counter"
+       type: "number"
+       from: "0"
+       to: "6"
+       step: "1"
+     loopBody:
+     - function:
+         name: "mProject"
+         type: "mProjectType"
+         dataIns:
+         - name: "input"
+           type: "string"
+           source: "mProjects/input"                  
+         properties:
+         - name: "resource"
+           value: "https://your-region-your-project.cloudfunctions.net/mProject"
+         constraints:
+         - name: "FT-AltPlan-0"
+           value: "1;https://yourproject.azurewebsites.net/api/mProject;"
+         - name: "FT-AltPlan-1"
+           value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mProject;" 
+ - function:
+     name: "preparemDiffFit"
+     type: "preparemDiffFitType"
+     dataOuts: 
+     - name: "diff_indices"
+       type: "collection"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/preparemDiffFit"   
+ - parallelFor:
+     name: "mDiffFits"
+     dataIns:
+     - name: "index"
+       type: "number"
+       source: "preparemDiffFit/diff_indices"
+       constraints:
+       - name: "distribution"
+         value: "BLOCK(1)"
+     loopCounter:
+       name: "counter"
+       type: "number"
+       from: "0"
+       to: "9"
+       step: "1"
+     loopBody:
+     - function:
+         name: "mDiffFit"
+         type: "mDiffFitType"
+         dataIns:
+         - name: "index"
+           type: "number"
+           source: "mDiffFits/index"                  
+         properties:
+         - name: "resource"
+           value: "https://your-region-your-project.cloudfunctions.net/mDiffFit"
+         constraints:
+         - name: "FT-AltPlan-0"
+           value: "1;https://yourproject.azurewebsites.net/api/mDiffFit;"
+         - name: "FT-AltPlan-1"
+           value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mDiffFit;"  
+ - function:
+     name: "mBgModel"
+     type: "mBgType"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mBgModel"
+       constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mBgModel;"
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mBgModel;"  
+ - function:
+     name: "preparemBackground"
+     type: "preparemBackgroundType"
+     dataOuts: 
+     - name: "background_indices"
+       type: "collection"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/preparemBackground"
+ - parallelFor:
+     name: "mBackgrounds"
+     dataIns:
+     - name: "index"
+       type: "number"
+       source: "preparemBackground/background_indices"
+       constraints:
+       - name: "distribution"
+         value: "BLOCK(1)"
+     loopCounter:
+       name: "counter"
+       type: "number"
+       from: "0"
+       to: "6"
+       step: "1"
+     loopBody:
+     - function:
+         name: "mBackground"
+         type: "mBackgroundType"
+         dataIns:
+         - name: "index"
+           type: "number"
+           source: "mBackgrounds/index"                  
+         properties:
+         - name: "resource"
+           value: "https://your-region-your-project.cloudfunctions.net/mBackground"
+         constraints:
+         - name: "FT-AltPlan-0"
+           value: "1;https://yourproject.azurewebsites.net/api/mBackground;"
+         - name: "FT-AltPlan-1"
+           value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mBackground;"  
+ - function:
+     name: "mImgtbl"
+     type: "mImgtblType"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mImgtbl"
+    constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mImgtbl;"
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mImgtbl;"   
+- function:
+     name: "mAdd"
+     type: "mAddType"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mAdd"
+    constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mAdd;"
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mAdd;"   
+ - function:
+     name: "mViewer"
+     type: "mViewerType"
+     properties:
+     - name: "resource"
+       value: "https://your-region-your-project.cloudfunctions.net/mViewer"
+    constraints:
+     - name: "FT-AltPlan-0"
+       value: "1;https://yourproject.azurewebsites.net/api/mViewer;"
+     - name: "FT-AltPlan-1"
+       value: "1;arn:aws:lambda:your-region:xxxxxxxxxxxx:function:mViewer;"   

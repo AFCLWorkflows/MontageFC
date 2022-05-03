@@ -1,0 +1,7 @@
+# Function dependencies, for example:
+# package>=version
+
+azure-functions
+MontagePy
+boto3
+botocore

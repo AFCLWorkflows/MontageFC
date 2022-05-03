@@ -1,0 +1,8 @@
+{
+
+	"input_files" : ["2mass-atlas-990502s-j1430092.fits","2mass-atlas-990502s-j1440198.fits","2mass-atlas-990502s-j1420198.fits","2mass-atlas-990502s-j1430080.fits","2mass-atlas-990502s-j1420186.fits","2mass-atlas-990502s-j1440186.fits"],
+	"diff_indices" : [0,1,2,3,4,5,6,7,8],
+	"background_indices" :[0,1,2,3,4,5],
+	"failure_prob": 5
+
+}
