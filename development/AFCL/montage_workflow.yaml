@@ -29,7 +29,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:preparemProjectPP"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:prepare-m_ProjectPP"
 - parallelFor:
     name: "mProjectPPs"
     dataIns:
@@ -72,7 +72,7 @@ workflowBody:
           source: "mProjectPPs/header"
         properties:
         - name: "resource"
-          value: "arn:aws:lambda:us-east-1:609751656607:function:m_ProjectPP"
+          value: "arn:aws:lambda:eu-central-1:717556240325:function:m_ProjectPP"
     dataOuts:
     - name: "bucket"
       type: "string"
@@ -101,7 +101,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:preparemDiffFit"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:prepare-m_DiffFit"
 - parallelFor:
     name: "mDiffFits"
     dataIns:
@@ -144,7 +144,7 @@ workflowBody:
           source: "mDiffFits/header"
         properties:
         - name: "resource"
-          value: "arn:aws:lambda:us-east-1:609751656607:function:m_DiffFit"
+          value: "arn:aws:lambda:eu-central-1:717556240325:function:m_DiffFit"
     dataOuts:
     - name: "bucket"
       type: "string"
@@ -169,7 +169,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:m_ConcatFit"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:m_ConcatFit"
 - function:
     name: "mBgModel"
     type: "Collection"
@@ -187,7 +187,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:m_BgModel"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:m_BgModel"
 - function:
     name: "preparemBackground"
     type: "Collection"
@@ -209,7 +209,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:preparemBackground"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:prepare-m_Background"
 - parallelFor:
     name: "mBackgrounds"
     dataIns:
@@ -249,7 +249,7 @@ workflowBody:
           source: "mBackgrounds/bucket"
         properties:
         - name: "resource"
-          value: "arn:aws:lambda:us-east-1:609751656607:function:m_Background"
+          value: "arn:aws:lambda:eu-central-1:717556240325:function:m_Background"
     dataOuts:
     - name: "bucket"
       type: "string"
@@ -274,7 +274,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:m_Imgtbl"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:m_Imgtbl"
 - function:
     name: "mAdd"
     type: "Collection"
@@ -290,7 +290,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:m_Add"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:m_Add"
 - function:
     name: "mShrink"
     type: "Collection"
@@ -303,7 +303,7 @@ workflowBody:
       type: "string"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:m_Shrink"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:m_Shrink"
 - function:
     name: "mViewer"
     type: "Collection"
@@ -313,4 +313,4 @@ workflowBody:
       source: "mShrink/bucket"
     properties:
     - name: "resource"
-      value: "arn:aws:lambda:us-east-1:609751656607:function:m_Viewer"
+      value: "arn:aws:lambda:eu-central-1:717556240325:function:m_Viewer"
