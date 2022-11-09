@@ -1,5 +1,5 @@
 {
-	"bucket": "arn:aws:s3:::montage-frankfurt",
+	"bucket": "gs://montage-frankfurt",
 	"header" : "region.hdr",
 	"color_folders" : ["gray"],
 	"aws_access_key_id": "XXXXXX",
