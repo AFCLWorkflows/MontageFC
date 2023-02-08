@@ -171,7 +171,7 @@ workflowBody:
           type: "collection"
         properties:
         - name: "resource"
-          value: "https://europe-west3-faas-355708.cloudfunctions.net/m_ProjectPP_4096"
+          value: "https://europe-west3-faas-355708.cloudfunctions.net/m_ProjectPP_8192"
     dataOuts:
     - name: "bucket"
       type: "string"
@@ -285,7 +285,7 @@ workflowBody:
           type: "collection"
         properties:
         - name: "resource"
-          value: "https://europe-west3-faas-355708.cloudfunctions.net/m_DiffFit_4096"
+          value: "https://europe-west3-faas-355708.cloudfunctions.net/m_DiffFit_8192"
     dataOuts:
     - name: "bucket"
       type: "string"
@@ -329,7 +329,7 @@ workflowBody:
       type: "collection"
     properties:
     - name: "resource"
-      value: "https://europe-west3-faas-355708.cloudfunctions.net/m_ConcatFit_2048"
+      value: "https://europe-west3-faas-355708.cloudfunctions.net/m_ConcatFit_4096"
 - function:
     name: "mBgModel"
     type: "Collection"
@@ -452,7 +452,7 @@ workflowBody:
           type: "collection"
         properties:
         - name: "resource"
-          value: "https://europe-west3-faas-355708.cloudfunctions.net/m_Background_2048"
+          value: "https://europe-west3-faas-355708.cloudfunctions.net/m_Background_4096"
     dataOuts:
     - name: "bucket"
       type: "string"
