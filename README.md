@@ -21,7 +21,7 @@ Montage workflow developed with AFCL (Abstract Function Choreography Language). 
 * ```m_Shrink```: montagePy
 * ```m_Viewer```: montagePy
 
-### AWS
+### GCP
 1. Create cloud bucket ```<bucket-name>```
 2. Create in cloud bucket the folder ```/input```
 3. Create in cloud bucket the folder ```/input/gray```
