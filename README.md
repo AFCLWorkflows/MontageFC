@@ -1,5 +1,5 @@
 # MontageFC
-Montage workflow developed with AFCL (Abstract Function Choreography Language)
+Montage workflow developed with AFCL (Abstract Function Choreography Language). This workflow uses the [Montage](http://montage.ipac.caltech.edu/ "Montage") toolkit to re-project, background correct and add astronomical images into custom mosaics.
 
 ## Project Setup
 ### AWS
@@ -30,7 +30,7 @@ Montage workflow developed with AFCL (Abstract Function Choreography Language)
 
 ## Execution
 ### Requirements
-To configure the credentials, setup for the execution and more requirements see [xAFCL EE](https://github.com/sashkoristov/enactmentengine) 
+To configure the credentials, the setup for the execution and more requirements see [xAFCL EE](https://github.com/sashkoristov/enactmentengine) 
 
 ### Run the workflow
 * Adapt the input.JSON file with the created bucket name and region header name (example for [AWS](https://github.com/AFCLWorkflows/MontageFC/blob/main/input_montage_aws.json "Input JSON AWS") and [AWS](https://github.com/AFCLWorkflows/MontageFC/blob/main/input_montage_gcp.json "Input JSON GCP"))
