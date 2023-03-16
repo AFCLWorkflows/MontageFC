@@ -1,21 +1,6 @@
 # MontageFC
 Montage workflow developed with AFCL (Abstract Function Choreography Language)
 
-## Requirements
-### AWS Lambda
-<em>credentials.properties</em>
-```
-  aws_access_key=<aws_access_key_id>
-  aws_secret_key=<aws_secret_access_key>
-  aws_session_token=<aws_session_token>
-```
-<em>input_montage.json</em>
-```
-{
-	"bucket" : "<bucket name>",
-	"header" : "<region header name>"
-}
-```
 ## Project Setup
 ### AWS
 1. Create s3 bucket ```<bucket-name>```
