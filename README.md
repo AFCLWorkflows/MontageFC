@@ -11,10 +11,11 @@ Montage workflow developed with AFCL (Abstract Function Choreography Language)
 6. Create lambda layers from [layers](https://github.com/AFCLWorkflows/MontageFC/tree/main/AWS%20Layers "Lambda Layers") and add the layers to each function as follows:
 * ```For all functions```: InspectorLayer and PyStorage
 * ```m_ProjectPP```: montagePy
-* ```preparemDiffFit```: montagePy, pandas, mDAGTbls
+* ```prepare-mDiffFit```: montagePy, pandas, mDAGTbls
 * ```m_DiffFit```: montagePy and mFitplane
 * ```m_ConcatFit```: mConcatFit and mStatFile
 * ```m_BgModel```: montagePy
+* ```prepare-m_Background```: pandas
 * ```m_Background```: mBackground
 * ```m_Imgtbl```: montagePy
 * ```m_Add```: montagePy
