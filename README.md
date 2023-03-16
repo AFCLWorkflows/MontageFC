@@ -34,4 +34,4 @@ To configure the credentials, the setup for the execution and more requirements 
 
 ### Run the workflow
 * Adapt the input.JSON file with the created bucket name and region header name (example for [AWS](https://github.com/AFCLWorkflows/MontageFC/blob/main/input_montage_aws.json "Input JSON AWS") and [AWS](https://github.com/AFCLWorkflows/MontageFC/blob/main/input_montage_gcp.json "Input JSON GCP"))
-* Run the workflow with the xACFL EE with the command: ```java -jar enactment-engine-all.jar montage_workflow.yaml input_montage.json``` 
+* Run the workflow with the [xAFCL EE](https://github.com/sashkoristov/enactmentengine) with the command: ```java -jar enactment-engine-all.jar montage_workflow.yaml input_montage.json``` 
