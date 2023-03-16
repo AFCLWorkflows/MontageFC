@@ -12,8 +12,8 @@ Montage workflow developed with AFCL (Abstract Function Choreography Language)
 <em>input_montage.json</em>
 ```
 {
-	"bucket" : "<bucket-name>",
-	"header" : "<region.hdr>"
+	"bucket" : "<bucket name>",
+	"header" : "<region header name>"
 }
 ```
 ## Project Setup
