@@ -40,4 +40,4 @@ Montage workflow developed with AFCL (Abstract Function Choreography Language)
 * ```m_Add```: MontagePy
 * ```m_Shrink```: MontagePy
 * ```m_Viewer```: MontagePy
-7. Execute Enacment Engine with the command: ```java -jar enactment-engine-all.jar montage_workflow.yaml input_montage.json``` [xAFCL EE](https://github.com/sashkoristov/enactmentengine)
+7. Execute Enacment Engine with the command: ```java -jar enactment-engine-all.jar montage_workflow.yaml input_montage.json``` (see [xAFCL EE](https://github.com/sashkoristov/enactmentengine) for more instructions)
