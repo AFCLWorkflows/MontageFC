@@ -33,4 +33,5 @@ Montage workflow developed with AFCL (Abstract Function Choreography Language)
 To configure the credentials, setup for the execution and more requirements see [xAFCL EE](https://github.com/sashkoristov/enactmentengine) 
 
 ### Run the workflow
+* Adapt the input.JSON file with the created bucket name and region header name (example for [AWS] (https://github.com/AFCLWorkflows/MontageFC/blob/main/input_montage_aws.json "Input JSON AWS")
 Execute Enacment Engine with the command: ```java -jar enactment-engine-all.jar montage_workflow.yaml input_montage.json``` 
